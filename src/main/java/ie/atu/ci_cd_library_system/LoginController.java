@@ -22,7 +22,7 @@ public class LoginController {
     @PostMapping("/login")
     public LoginResponse login(@RequestBody Login login){
         for(int i=0;i<users.size();i++){
-            if(users.get(i).getPassword().equals(login.getPassword() )&&users.get(i).getUsername().equals(login.getUsername())){
+            if(users.get(i).getPassword().equals(login.getPassword() )&&users.get(i).getUsername().equalsIgnoreCase(login.getUsername())){
                 return new LoginResponse("Login successful Welcome, " + users.get(i).getUsername());
             }
         }
