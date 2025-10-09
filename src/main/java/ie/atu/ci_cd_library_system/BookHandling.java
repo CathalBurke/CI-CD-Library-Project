@@ -10,7 +10,11 @@ import java.util.List;
 @RequestMapping
 
 public class BookHandling {
-    private List<Books> book = new ArrayList<>();
+    private List<Books> books = new ArrayList<>();
+
+    public void addBook(Books book) {
+        books.add(book);
+    }
 
     public void buyBook(String title) {
     }
