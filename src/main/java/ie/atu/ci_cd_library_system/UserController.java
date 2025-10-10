@@ -55,6 +55,12 @@ public class UserController {
         return "User updated successfully " + existing.getName();
     }
 
+    @DeleteMapping("/Delete/{email}")
+    public String DeleteUser(@PathVariable String email){
+        User existing = findByEmail(email);
+        users.remove(existing);
+        return "User deleted successfully " + existing.getName();
+    }
 
 
 
