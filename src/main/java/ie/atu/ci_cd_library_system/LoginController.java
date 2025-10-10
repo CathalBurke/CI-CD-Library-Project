@@ -74,16 +74,17 @@ public class LoginController {
         return new LoginResponse("Login unsuccessful Invalid Credentials") ;
     }
 
-    /*@DeleteMapping("/delete")
-    public String deleteUser(@PathVariable String login){
-        for(int i=0;i<users.size();i++){
-            if(users.get(i).getUsername().equalsIgnoreCase(login.getUsername())){
+    @DeleteMapping("/delete/{username}")
+    public LoginResponse deleteUser(@PathVariable String username){
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUsername().equalsIgnoreCase(username)) {
                 users.remove(i);
-                return new LoginResponse("Deleted user, " + users.get(i).getUsername());
+                return new LoginResponse("User"+username+" has been deleteted");
             }
         }
-        return new LoginResponse("Delete unsuccessful Invalid Credentials") ;
-    }*/
+        return new LoginResponse("Error! User "+username+ "not found!");
+    }
+
 
 
 }
