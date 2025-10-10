@@ -10,9 +10,21 @@ public class UserController {
 
     private final List<User> users;
 
+
+
     public UserController() {
         this.users = new ArrayList<>();
     }
+
+    private User findByEmail(String email) {
+        for (User user : users) {
+            if (user.getEmail().equals(email)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
 
     @PostMapping("/add")
     public String addUser(@RequestBody User user) {
@@ -34,4 +46,19 @@ public class UserController {
     public List<User> listUsers() {
         return users;
     }
+
+    @PutMapping("/Update/{email}")
+    public String UpdateUser(@PathVariable String email, @RequestBody User Updated){
+        User existing = findByEmail(email);
+        existing.setName(Updated.getName());
+        existing.setEmail(Updated.getEmail());
+        return "User updated successfully " + existing.getName();
+    }
+
+
+
+
+
+
+
 }
