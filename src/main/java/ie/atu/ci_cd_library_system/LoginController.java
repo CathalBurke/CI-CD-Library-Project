@@ -15,8 +15,35 @@ public class LoginController {
         new Login("fionn","password")  ,
         new Login("enzo","password")
     );
+    /*@GetMapping("/add")
+    public  LoginResponse addUser(@RequestParam String username, @RequestParam String password){
+        users.add
 
-    @PostMapping("/login")
+    }*/
+
+    private Login findByLogin(String login){
+        for(int i=0;i<users.size();i++){
+            if(users.get(i).getUsername().equals(login)){
+                return users.get(i);
+            }
+        }
+        return null;
+    }
+
+
+
+    @GetMapping("/list")//read
+    public List<Login> getUsers(){
+        return users;
+    }
+
+   /* @PutMapping("/Update/[{username}")
+    public String updateUser(@PathVariable String username, @RequestBody Login Updated){
+        User existing = findByLogin(username);
+        existing.setName(username);
+
+    }*/
+    @PostMapping("/login")//creatwe
     public LoginResponse login(@RequestBody Login login){
         for(int i=0;i<users.size();i++){
             if(users.get(i).getPassword().equals(login.getPassword() )&&users.get(i).getUsername().equalsIgnoreCase(login.getUsername())){
@@ -26,10 +53,16 @@ public class LoginController {
         return new LoginResponse("Login unsuccessful Invalid Credentials") ;
     }
 
-    @GetMapping("/list")
-    public List<Login> getUsers(){
-        return users;
-    }
+    /*@DeleteMapping("/delete")
+    public String deleteUser(@PathVariable String login){
+        for(int i=0;i<users.size();i++){
+            if(users.get(i).getUsername().equalsIgnoreCase(login.getUsername())){
+                users.remove(i);
+                return new LoginResponse("Deleted user, " + users.get(i).getUsername());
+            }
+        }
+        return new LoginResponse("Delete unsuccessful Invalid Credentials") ;
+    }*/
 
 
 }
