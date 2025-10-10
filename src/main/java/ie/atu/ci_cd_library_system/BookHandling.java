@@ -1,27 +1,38 @@
 package ie.atu.ci_cd_library_system;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import jakarta.validation.Valid;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/Books")
 
 public class BookHandling {
+
     private List<Books> books = new ArrayList<>();
 
-    public void addBook(Books book) {
-        books.add(book);
+    @GetMapping("/getBooks")
+    public List<Books> getBooks()
+    {
+        Books myBooks = new Books("book1", "JohnDoe","Fantasy");
+        return books;
     }
 
-    public void buyBook(String title) {
+    @PostMapping("/addBooks")
+    public Books addBooks(@Valid @RequestBody Books myBooks)
+    {
+        books.add(myBooks);
+        return myBooks;
     }
 
-    public void rentBook(String title) {
+    @GetMapping("/Count")
+    public int bookCount()
+    {
+        return books.size();
     }
 
-    public void returnBook(String title) {
-    }
+
 }

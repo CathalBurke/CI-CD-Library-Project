@@ -13,22 +13,10 @@ import java.util.List;
 
 public class MenuController {
 
-    @GetMapping("/Buy")
-    public String buy()
+    @GetMapping("/Option")
+    public String option()
     {
-        return "Purchase";
-    }
-
-    @GetMapping("/Rent")
-    public String rent()
-    {
-        return "Rent";
-    }
-
-    @GetMapping("/Returning")
-    public String returning()
-    {
-        return "Return";
+        return "Please choose one of the following options:";
     }
 
     @GetMapping("/Menu")
