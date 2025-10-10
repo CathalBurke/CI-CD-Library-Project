@@ -10,11 +10,11 @@ import java.util.List;
 @RestController
 public class LoginController {
     //hardcoded list of admin users no permissions yet just a login
-    private final List<Login> users=new ArrayList<>(Arrays.asList(
-        new Login("patrick","password") ,
-        new Login("cathal","password")   ,
-        new Login("fionn","password")  ,
-        new Login("enzo","password")
+    private final List<Login> users = new ArrayList<>(Arrays.asList(
+            new Login("patrick", "password"),
+            new Login("cathal", "password"),
+            new Login("fionn", "password"),
+            new Login("enzo", "password")
     ));
     /*@GetMapping("/add")
     public  LoginResponse addUser(@RequestParam String username, @RequestParam String password){
@@ -22,9 +22,9 @@ public class LoginController {
 
     }*/
 
-    private Login findByLogin(String login){
-        for(int i=0;i<users.size();i++){
-            if(users.get(i).getUsername().equals(login)){
+    private Login findByLogin(String login) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUsername().equals(login)) {
                 return users.get(i);
             }
         }
@@ -32,27 +32,38 @@ public class LoginController {
     }
 
 
-        @PostMapping("/users")//create
-        public LoginResponse createUser(@RequestBody Login Newuser){
-        for(int i=0;i<users.size();i++){
-            if(users.get(i).getUsername().equals(Newuser.getUsername())){
+    @PostMapping("/users")//create
+    public LoginResponse createUser(@RequestBody Login Newuser) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUsername().equals(Newuser.getUsername())) {
                 return new LoginResponse("User already exists!");
             }
         }
         users.add(Newuser);
-        return new LoginResponse("User has been created! Welcome "+Newuser.getUsername());
-        }
+        return new LoginResponse("User has been created! Welcome " + Newuser.getUsername());
+    }
+
     @GetMapping("/list")//read
-    public List<Login> getUsers(){
+    public List<Login> getUsers() {
         return users;
     }
 
-   /* @PutMapping("/Update/[{username}")
-    public String updateUser(@PathVariable String username, @RequestBody Login Updated){
-        User existing = findByLogin(username);
-        existing.setName(username);
+    @PutMapping("/update/{username}")
+    public LoginResponse updateUser(@PathVariable String username, @RequestBody Login updatedUser) {
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+                if (updatedUser.getPassword() != null && !updatedUser.getPassword().isEmpty()) {
+                    users.get(i).setPassword(updatedUser.getPassword());
+                }
+                if (updatedUser.getUsername() != null && !updatedUser.getUsername().isEmpty()) {
+                    users.get(i).setUsername(updatedUser.getUsername());
+                }
+                return new LoginResponse("User has been updated! Welcome " + username);
+            }
+        }
+        return new LoginResponse("Error! User "+username+ "not found!");
+    }
 
-    }*/
     @PostMapping("/login")//creatwe
     public LoginResponse login(@RequestBody Login login){
         for(int i=0;i<users.size();i++){
