@@ -1,9 +1,6 @@
 package ie.atu.ci_cd_library_system;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -28,6 +25,12 @@ public class LoginController {
         }
         return new LoginResponse("Login unsuccessful Invalid Credentials") ;
     }
+
+    @GetMapping("/list")
+    public List<Login> getUsers(){
+        return users;
+    }
+
 
 }
 
