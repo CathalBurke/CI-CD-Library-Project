@@ -16,20 +16,9 @@ public class LoginController {
             new Login("fionn", "password"),
             new Login("enzo", "password")
     ));
-    /*@GetMapping("/add")
-    public  LoginResponse addUser(@RequestParam String username, @RequestParam String password){
-        users.add
 
-    }*/
 
-    private Login findByLogin(String login) {
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getUsername().equals(login)) {
-                return users.get(i);
-            }
-        }
-        return null;
-    }
+
 
 
     @PostMapping("/users")//create
@@ -43,10 +32,36 @@ public class LoginController {
         return new LoginResponse("User has been created! Welcome " + Newuser.getUsername());
     }
 
+    @PostMapping("/login")//creatwe
+    public LoginResponse login(@RequestBody Login login){
+        for(int i=0;i<users.size();i++){
+            if(users.get(i).getPassword().equals(login.getPassword() )&&users.get(i).getUsername().equalsIgnoreCase(login.getUsername())){
+                return new LoginResponse("Login successful Welcome, " + users.get(i).getUsername());
+            }
+        }
+        return new LoginResponse("Login unsuccessful Invalid Credentials") ;
+    }
+
     @GetMapping("/list")//read
     public List<Login> getUsers() {
         return users;
     }
+
+
+
+
+
+    @DeleteMapping("/delete/{username}")
+    public LoginResponse deleteUser(@PathVariable String username){
+        for (int i = 0; i < users.size(); i++) {
+            if (users.get(i).getUsername().equalsIgnoreCase(username)) {
+                users.remove(i);
+                return new LoginResponse("User"+username+" has been deleteted");
+            }
+        }
+        return new LoginResponse("Error! User "+username+ "not found!");
+    }
+
 
     @PutMapping("/update/{username}")
     public LoginResponse updateUser(@PathVariable String username, @RequestBody Login updatedUser) {
@@ -63,28 +78,6 @@ public class LoginController {
         }
         return new LoginResponse("Error! User "+username+ "not found!");
     }
-
-    @PostMapping("/login")//creatwe
-    public LoginResponse login(@RequestBody Login login){
-        for(int i=0;i<users.size();i++){
-            if(users.get(i).getPassword().equals(login.getPassword() )&&users.get(i).getUsername().equalsIgnoreCase(login.getUsername())){
-                return new LoginResponse("Login successful Welcome, " + users.get(i).getUsername());
-            }
-        }
-        return new LoginResponse("Login unsuccessful Invalid Credentials") ;
-    }
-
-    @DeleteMapping("/delete/{username}")
-    public LoginResponse deleteUser(@PathVariable String username){
-        for (int i = 0; i < users.size(); i++) {
-            if (users.get(i).getUsername().equalsIgnoreCase(username)) {
-                users.remove(i);
-                return new LoginResponse("User"+username+" has been deleteted");
-            }
-        }
-        return new LoginResponse("Error! User "+username+ "not found!");
-    }
-
 
 
 }
