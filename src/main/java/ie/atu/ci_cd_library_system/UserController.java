@@ -1,6 +1,10 @@
 package ie.atu.ci_cd_library_system;
 
+import jakarta.validation.Valid;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,14 +18,17 @@ public class UserController {
         this.users = new ArrayList<>();
     }
 
+    // Add user with validation
     @PostMapping("/add")
-    public String addUser(@RequestBody User user) {
+    public ResponseEntity<?> addUser(@Valid @RequestBody User user) {
         users.add(user);
-        return "User added: " + user.getName();
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("User added successfully: " + user.getName());
     }
 
+    // List all users
     @GetMapping("/list")
-    public List<User> listUsers() {
-        return users;
+    public ResponseEntity<List<User>> listUsers() {
+        return ResponseEntity.ok(users);
     }
 }
