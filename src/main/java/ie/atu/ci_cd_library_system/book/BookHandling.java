@@ -1,4 +1,4 @@
-package ie.atu.ci_cd_library_system;
+package ie.atu.ci_cd_library_system.book;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

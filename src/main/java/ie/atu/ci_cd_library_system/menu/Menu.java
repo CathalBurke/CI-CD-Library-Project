@@ -1,9 +1,7 @@
-package ie.atu.ci_cd_library_system;
+package ie.atu.ci_cd_library_system.menu;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.Scanner;
 
 @Data
 @AllArgsConstructor
