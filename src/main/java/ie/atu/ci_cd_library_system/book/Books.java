@@ -1,12 +1,23 @@
 package ie.atu.ci_cd_library_system.book;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@Entity
 @Data
 @AllArgsConstructor
+@NoArgsConstructor
 
 public class Books {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)    private long id;
+
     private String title;
     private String author;
     private String genre;

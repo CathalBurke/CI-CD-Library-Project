@@ -1,27 +1,25 @@
 package ie.atu.ci_cd_library_system.book;
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping
-
+@RequestMapping("/books")
+@RequiredArgsConstructor
 public class BookHandling {
-    private List<Books> books = new ArrayList<>();
 
-    public void addBook(Books book) {
-        books.add(book);
+    private final BookRepository bookRepository;
+
+    // POST /books  → save book to DB
+    @PostMapping
+    public Books addBook(@RequestBody Books book) {
+        return bookRepository.save(book);
     }
 
-    public void buyBook(String title) {
-    }
-
-    public void rentBook(String title) {
-    }
-
-    public void returnBook(String title) {
+    // GET /books  → get all books from DB
+    @GetMapping
+    public List<Books> getBooks() {
+        return bookRepository.findAll();
     }
 }
