@@ -1,4 +1,4 @@
-package ie.atu.ci_cd_library_system;
+package ie.atu.ci_cd_library_system.user;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;

@@ -1,4 +1,4 @@
-package ie.atu.ci_cd_library_system;
+package ie.atu.ci_cd_library_system.book;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
