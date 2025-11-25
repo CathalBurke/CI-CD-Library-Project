@@ -22,6 +22,7 @@ public class BookHandling {
         if (book.getQuantity() < 0) {
             book.setQuantity(0);
         }
+        book.setMaxQuantity(book.getQuantity());
         return bookRepository.save(book);
     }
 

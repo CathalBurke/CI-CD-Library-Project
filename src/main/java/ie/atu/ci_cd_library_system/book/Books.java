@@ -27,4 +27,8 @@ public class Books {
     private String author;
     private String genre;
     private int quantity;
+
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
+    private int maxQuantity;//ensures return doesnt go over intial value
 }

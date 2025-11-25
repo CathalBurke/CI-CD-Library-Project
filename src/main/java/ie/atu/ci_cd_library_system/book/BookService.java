@@ -41,6 +41,9 @@ public class BookService {
     public Books returnBook(Long bookId) {
         Books book  = bookRepository.findById(bookId)
                 .orElseThrow(() -> new RuntimeException("Book not found"));
+        if(book.getQuantity() >= book.getMaxQuantity()){
+            throw new RuntimeException("All books have been returned");
+        }
         book.setQuantity(book.getQuantity() + 1);
         return bookRepository.save(book);
     }
