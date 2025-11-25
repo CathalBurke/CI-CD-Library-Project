@@ -18,6 +18,10 @@ public class BookHandling {
 
     @PostMapping
     public Books addBook(@RequestBody Books book) {
+        // Ensure quantity is at least 0
+        if (book.getQuantity() < 0) {
+            book.setQuantity(0);
+        }
         return bookRepository.save(book);
     }
 

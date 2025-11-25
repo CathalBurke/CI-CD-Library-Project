@@ -1,25 +1,29 @@
 package ie.atu.ci_cd_library_system.menu;
 
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import ie.atu.ci_cd_library_system.book.BookService;
+import ie.atu.ci_cd_library_system.book.Books;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping
 public class MenuController {
 
+    private final BookService bookService;
 
-
-    @GetMapping("/Buy")
-    public String buy() {
-        return "Purchase";
+    public MenuController(BookService bookService) {
+        this.bookService = bookService;
     }
 
-    @GetMapping("/Rent")
-    public String rent() {
-        return "Rent";
+
+    @PostMapping("/buy/{id}")
+    public Books buy(@PathVariable Long id) {
+        return bookService.buyBook(id);
+    }
+
+    @PostMapping("/rent{id}")
+    public Books rent(@PathVariable Long id) {
+        return bookService.rentBook(id);
     }
 
     @GetMapping("/Returning")
