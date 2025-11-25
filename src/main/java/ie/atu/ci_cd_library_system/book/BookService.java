@@ -36,4 +36,12 @@ public class BookService {
             throw new RuntimeException("Book not available for rent");
         }
     }
+
+    @Transactional
+    public Books returnBook(Long bookId) {
+        Books book  = bookRepository.findById(bookId)
+                .orElseThrow(() -> new RuntimeException("Book not found"));
+        book.setQuantity(book.getQuantity() + 1);
+        return bookRepository.save(book);
+    }
 }

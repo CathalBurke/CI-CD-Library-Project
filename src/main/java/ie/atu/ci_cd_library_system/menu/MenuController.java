@@ -26,9 +26,9 @@ public class MenuController {
         return bookService.rentBook(id);
     }
 
-    @GetMapping("/Returning")
-    public String returning() {
-        return "Return";
+    @PostMapping("/return{id}")
+    public Books returning(@PathVariable Long id) {
+        return bookService.returnBook(id);
     }
 
     @GetMapping("/Menu")
