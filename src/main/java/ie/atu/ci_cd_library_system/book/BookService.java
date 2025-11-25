@@ -16,11 +16,12 @@ public class BookService {
         Books book = bookRepository.findById(bookId)
                 .orElseThrow(() -> new RuntimeException("Book not found"));
 
-        if (book.getQuantity() > 0) {
+        if (book.getQuantity() > 0 && book.getMaxQuantity() > 0) {
             book.setQuantity(book.getQuantity() - 1);
+            book.setMaxQuantity(book.getMaxQuantity() -1);
             return bookRepository.save(book);
         } else {
-            throw new RuntimeException("Book not available for purchase");
+            throw new RuntimeException("Book out of stock");
         }
     }
 
