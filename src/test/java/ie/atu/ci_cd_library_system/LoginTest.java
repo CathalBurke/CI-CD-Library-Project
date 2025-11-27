@@ -22,7 +22,7 @@ class LoginValidationTest {
     }
 
     @Test
-    void whenUsernameIsBlank_thenValidationFails() {
+    void UsernameBlank_Fails() {
         Login login = new Login("", "password123");
         Set<ConstraintViolation<Login>> violations = validator.validate(login);
 
@@ -32,7 +32,7 @@ class LoginValidationTest {
     }
 
     @Test
-    void whenPasswordIsTooShort_thenValidationFails() {
+    void PasswordTooShort_Fails() {
         Login login = new Login("user", "a");
         Set<ConstraintViolation<Login>> violations = validator.validate(login);
 
@@ -42,7 +42,7 @@ class LoginValidationTest {
     }
 
     @Test
-    void whenUsernameAndPasswordAreValid_thenValidationPasses() {
+    void UsernameAndPasswordValid_Passes() {
         Login login = new Login("validUser", "validPass");
         Set<ConstraintViolation<Login>> violations = validator.validate(login);
 
