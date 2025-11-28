@@ -1,27 +1,33 @@
 package ie.atu.ci_cd_library_system.book;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-import java.util.ArrayList;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
 @RestController
-@RequestMapping
+@RequestMapping("/books")
 
 public class BookHandling {
-    private List<Books> books = new ArrayList<>();
 
-    public void addBook(Books book) {
-        books.add(book);
+    private final BookRepository bookRepository;
+
+    public BookHandling(BookRepository bookRepository) {
+        this.bookRepository = bookRepository;
     }
 
-    public void buyBook(String title) {
+    @PostMapping
+    public Books addBook(@RequestBody Books book) {
+        // Ensure quantity is at least 0
+        if (book.getQuantity() < 0) {
+            book.setQuantity(0);
+        }
+        book.setMaxQuantity(book.getQuantity());
+        return bookRepository.save(book);
     }
 
-    public void rentBook(String title) {
-    }
-
-    public void returnBook(String title) {
+    @GetMapping
+    public List<Books> getBooks() {
+        return bookRepository.findAll();
     }
 }
