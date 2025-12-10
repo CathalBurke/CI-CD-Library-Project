@@ -26,8 +26,8 @@ public class BookService {
     }
 
     @Transactional
-    public Books rentBook(Long bookId) {
-        Books book = bookRepository.findById(bookId)
+    public Books rentBook(String title) {
+        Books book = bookRepository.findByTitleIgnoreCase(title)
                 .orElseThrow(() -> new RuntimeException("Book not found"));
 
         if (book.getQuantity() > 0) {
@@ -39,8 +39,8 @@ public class BookService {
     }
 
     @Transactional
-    public Books returnBook(Long bookId) {
-        Books book  = bookRepository.findById(bookId)
+    public Books returnBook(String title) {
+        Books book  = bookRepository.findByTitleIgnoreCase(title)
                 .orElseThrow(() -> new RuntimeException("Book not found"));
         if(book.getQuantity() >= book.getMaxQuantity()){
             throw new RuntimeException("All books have been returned");
