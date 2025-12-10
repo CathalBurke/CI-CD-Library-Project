@@ -16,19 +16,19 @@ public class MenuController {
     }
 
 
-    @PostMapping("/buy/{id}")
-    public Books buy(@PathVariable Long id) {
-        return bookService.buyBook(id);
+    @PostMapping("/buy/{title}")
+    public Books buy(@PathVariable String title) {
+        return bookService.buyBook(title);
     }
 
-    @PostMapping("/rent{id}")
-    public Books rent(@PathVariable Long id) {
-        return bookService.rentBook(id);
+    @PostMapping("/rent{title}")
+    public Books rent(@PathVariable String title) {
+        return bookService.rentBook(title);
     }
 
-    @PostMapping("/return{id}")
-    public Books returning(@PathVariable Long id) {
-        return bookService.returnBook(id);
+    @PostMapping("/return{title}")
+    public Books returning(@PathVariable String title) {
+        return bookService.returnBook(title);
     }
 
     @GetMapping("/Menu")
