@@ -2,4 +2,8 @@ package ie.atu.ci_cd_library_system.book;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BookRepository extends JpaRepository<Books, Long> { }
+import java.util.Optional;
+
+public interface BookRepository extends JpaRepository<Books, Long> {
+    Optional<Books> findByTitleIgnoreCase(String title);
+}

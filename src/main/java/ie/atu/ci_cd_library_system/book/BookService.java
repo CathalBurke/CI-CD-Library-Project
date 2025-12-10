@@ -12,9 +12,9 @@ public class BookService {
     }
     //transactional makes sure either all of it or nothing goes to database
     @Transactional
-    public Books buyBook(Long bookId) {
-        Books book = bookRepository.findById(bookId)
-                .orElseThrow(() -> new RuntimeException("Book not found"));
+    public Books buyBook(String title) {
+        Books book = bookRepository.findByTitleIgnoreCase(title)
+                .orElseThrow(() -> new RuntimeException("Title does not exist"));
 
         if (book.getQuantity() > 0 && book.getMaxQuantity() > 0) {
             book.setQuantity(book.getQuantity() - 1);
