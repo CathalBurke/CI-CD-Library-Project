@@ -18,6 +18,12 @@ public class BookHandling {
 
     @PostMapping
     public Books addBook(@RequestBody Books book) {
+        //makes sure theres no books with same title but just different case
+        bookRepository.findByTitleIgnoreCase(book.getTitle()).ifPresent(existingBook -> {
+            throw new RuntimeException("Book with title " + book.getTitle() + " already exists");
+        });
+
+
         // Ensure quantity is at least 0
         if (book.getQuantity() < 0) {
             book.setQuantity(0);
