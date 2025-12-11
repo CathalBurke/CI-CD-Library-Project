@@ -15,6 +15,13 @@ public class UserController {
 
     private final UserRepository userRepository;
 
+    // Minimal endpoint for Loan service
+    @GetMapping("/{id}/exists")
+    public ResponseEntity<Boolean> userExists(@PathVariable Long id) {
+        boolean exists = userRepository.existsById(id);
+        return ResponseEntity.ok(exists);
+    }
+
     private boolean isAdmin(String email, String password) {
         return userRepository.findByEmail(email)
                 .filter(User::isAdmin)
