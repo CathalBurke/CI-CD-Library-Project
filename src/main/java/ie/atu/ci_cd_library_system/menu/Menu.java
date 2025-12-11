@@ -1,14 +1,14 @@
-package ie.atu.ci_cd_library_system;
+package ie.atu.ci_cd_library_system.menu;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
-
-import java.util.Scanner;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
 @AllArgsConstructor
-
 public class Menu {
-    private String userChoice;
     private String choice;
+    private String userChoice;
 }
+

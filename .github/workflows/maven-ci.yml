@@ -1,8 +1,10 @@
 name: Maven CI
 
 on:
-  push: { branches: [master] }
-  pull_request: { branches: [master] }
+  push:
+    branches: [master, Changing-to-DB-Structure]
+  pull_request:
+    branches: [master, Changing-to-DB-Structure]
 
 jobs:
   build:
