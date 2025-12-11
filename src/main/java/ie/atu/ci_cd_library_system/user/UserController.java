@@ -18,6 +18,7 @@ public class UserController {
     // Add user with validation and save to DB
     @PostMapping("/add")
     public ResponseEntity<User> addUser(@Valid @RequestBody User user) {
+        user.setAdmin(false);
         User savedUser = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }

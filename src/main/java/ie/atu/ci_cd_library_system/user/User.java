@@ -34,4 +34,7 @@ public class User {
 
     @NotBlank(message = "Password is required")
     private String password;
+
+    @Schema(description = "Is this user an admin?", example = "false")
+    private boolean admin;
 }
