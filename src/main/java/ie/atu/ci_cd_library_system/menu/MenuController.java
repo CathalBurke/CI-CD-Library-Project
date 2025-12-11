@@ -15,20 +15,19 @@ public class MenuController {
         this.bookService = bookService;
     }
 
-
     @PostMapping("/buy/{title}")
-    public Books buy(@PathVariable String title) {
-        return bookService.buyBook(title);
+    public Books buy(@PathVariable String title,  @RequestParam double payment) {
+        return bookService.buyBook(title, payment);
     }
 
-    @PostMapping("/rent{title}")
-    public Books rent(@PathVariable String title) {
-        return bookService.rentBook(title);
+    @PostMapping("/rent/{title}")
+    public Books rent(@PathVariable String title, @RequestParam Long userId) {
+        return bookService.rentBook(title, userId);
     }
 
     @PostMapping("/return{title}")
-    public Books returning(@PathVariable String title) {
-        return bookService.returnBook(title);
+    public Books returning(@PathVariable String title, @RequestParam Long userId) {
+        return bookService.returnBook(title, userId);
     }
 
     @GetMapping("/Menu")
