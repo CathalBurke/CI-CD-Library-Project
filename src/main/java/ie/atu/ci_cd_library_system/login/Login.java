@@ -1,4 +1,4 @@
-package ie.atu.ci_cd_library_system.user;
+package ie.atu.ci_cd_library_system.login;
 
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

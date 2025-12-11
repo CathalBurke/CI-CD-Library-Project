@@ -1,5 +1,6 @@
-package ie.atu.ci_cd_library_system.user;
+package ie.atu.ci_cd_library_system.login;
 
+import ie.atu.ci_cd_library_system.user.UserRepository;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
