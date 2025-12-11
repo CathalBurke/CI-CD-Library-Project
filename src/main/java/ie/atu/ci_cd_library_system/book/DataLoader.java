@@ -21,10 +21,14 @@ public class DataLoader implements CommandLineRunner {
         logger.info("Loading Books");
         //sample books to test on instead of creating new books each time
         List<Books> sampleBooks = Arrays.asList(
-             new Books(null,"WoK","BS","FS",3,3),
-                new Books(null,"TW","AS","FS",2,2),
-                new Books(null,"GoT","GRRM","FS",5,5),
-                new Books(null,"HG","SC","YA",3,3)
+                new Books(null,"The Way of Kings","Brandon Sanderson","Fantasy",3,24),
+                new Books(null,"The Witcher","Andrzej Sapkowski","Fantasy",2,18),
+                new Books(null,"Game of Thrones","George R.R. Martin","Fantasy",5,26),
+                new Books(null,"The Hunger Games","Suzanne Collins","Fantasy",3,20),
+                new Books(null,"1984","George Orwell","Dystopian",7,30),
+                new Books(null,"The Martian","Andy Weir","Science Fiction",2,16),
+                new Books(null,"The Shining","Stephen King","Horror",3,22),
+                new Books(null,"To Kill a Mockingbird","Harper Lee","Classic",6,28)
         );
         for (Books book : sampleBooks) {
             bookRepository.save(book);
