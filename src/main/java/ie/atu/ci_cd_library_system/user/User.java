@@ -38,6 +38,4 @@ public class User {
     @Schema(description = "Is this user an admin?", example = "false")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private boolean admin;
-
-    private int rentCount;
 }
