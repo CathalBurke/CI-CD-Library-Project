@@ -10,10 +10,15 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/users")
-@RequiredArgsConstructor
+
 public class UserController {
 
     private final UserRepository userRepository;
+
+    public UserController(UserRepository userRepository) {
+
+        this.userRepository = userRepository;
+    }
 
     private boolean isAdmin(String email, String password) {
         return userRepository.findByEmail(email)

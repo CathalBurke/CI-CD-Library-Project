@@ -38,4 +38,10 @@ public class User {
     @Schema(description = "Is this user an admin?", example = "false")
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private boolean admin;
+
+    // Convenience constructor used in tests or simple creation (does not set id or admin)
+    public User(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
 }
