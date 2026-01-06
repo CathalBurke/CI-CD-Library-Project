@@ -1,13 +1,12 @@
-package ie.atu.ci_cd_library_system.book;
+package ie.atu.ci_cd_library_system.loan;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import java.util.Optional;
+@FeignClient(name = "book-service", url = "${book.service.url}")
+public interface BookClient {
 
-public interface BookRepository extends JpaRepository<Books, Long> {
-    Optional<Books> findByTitleIgnoreCase(String title);
     @PostMapping("/books/{id}/reserve")
     Boolean reserveBook(@PathVariable("id") Long id);
 
