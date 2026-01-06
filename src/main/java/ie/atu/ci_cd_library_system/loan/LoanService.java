@@ -7,7 +7,7 @@ import java.util.List;
 @Service
 public class LoanService {
 
-    /private final LoanRepository loanRepository;
+    private final LoanRepository loanRepository;
     private final UserClient userClient;
     private final BookClient bookClient;
 

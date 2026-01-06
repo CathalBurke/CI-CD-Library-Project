@@ -35,4 +35,12 @@ public class Loan {
 
     @Column(name = "returned")
     private boolean returned;
-}
+
+    public Loan(long id, long userId, long bookId, Object loanDate, boolean returned) {
+        this.id = id;
+        this.userId = userId;
+        this.bookId = bookId;
+        this.loanDate = (LocalDate) loanDate;
+        this.returned = returned;
+    }}
+
